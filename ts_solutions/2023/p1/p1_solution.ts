@@ -2,7 +2,6 @@ import * as fs from "fs";
 
 export function solveDayOne() {
   const values = fs.readFileSync("./input.txt", "utf-8").split("\n");
-  const nums: string[] = [];
   const digits = {
     one: "1",
     two: "2",
@@ -42,6 +41,5 @@ export function solveDayOne() {
     }
     acc += Number(nums);
   });
-  console.log(acc);
   return acc;
 }
