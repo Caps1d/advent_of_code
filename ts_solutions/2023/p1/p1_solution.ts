@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 export function solveDayOne() {
-  const values = fs.readFileSync("./input.txt", "utf-8").split("\n");
+  const values = fs.readFileSync("./d1_input.txt", "utf-8").split("\n");
   const digits = {
     one: "1",
     two: "2",
