@@ -1,16 +1,47 @@
 import * as fs from "fs";
 
-const values = fs.readFileSync("./input.txt", "utf-8").split("\n");
+export function solveDayOne() {
+  const values = fs.readFileSync("./input.txt", "utf-8").split("\n");
+  const nums: string[] = [];
+  const digits = {
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
 
-//The idea is to use a 2 pointer approach
-values.forEach((value) => {
-  let i = 0;
-  let j = value.length - 1;
-  let val = value.split("");
-  console.log(val, j);
-  while (i <= j && j > i) {
-    if (value[i].isdigit(){
-
-    })
-  }
-});
+  let acc = 0;
+  values.forEach((value: string) => {
+    let nums = "";
+    for (let i = 0; i < value.length; i++) {
+      const substr = value.slice(i);
+      for (const [key, val] of Object.entries(digits)) {
+        if (substr.startsWith(key) || substr.startsWith(val)) {
+          nums += val;
+        }
+      }
+      if (nums.length == 1) {
+        break;
+      }
+    }
+    for (let i = value.length; i >= 0; i--) {
+      const substr = value.slice(0, i);
+      for (const [key, val] of Object.entries(digits)) {
+        if (substr.endsWith(key) || substr.endsWith(val)) {
+          nums += val;
+        }
+      }
+      if (nums.length == 2) {
+        break;
+      }
+    }
+    acc += Number(nums);
+  });
+  console.log(acc);
+  return acc;
+}
